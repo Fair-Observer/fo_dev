@@ -1,0 +1,39 @@
+{
+  "name": "fo_dev",
+  "version": "1.0.0",
+  "description": "This is a demo for Fair Observer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "buildcss": "webpack --config webpack.css.js --mode production",
+    "builddist": "webpack --config webpack.dist.js --mode production",
+    "buildserver": "webpack --config webpack.server.js --mode production",
+    "build": "webpack --config webpack.server.js --mode production && webpack --config webpack.dist.js --mode production && webpack --config webpack.css.js --mode production && python2 scripts/injectcss.py",
+    "develop": "webpack --config webpack.server.js --mode development && webpack --config webpack.dist.js --mode development && webpack --config webpack.css.js --mode development && python2 scripts/injectcss.py"
+  },
+  "author": "Alexander Coward",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "^7.17.12",
+    "@babel/preset-env": "^7.17.12",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "^8.2.5",
+    "babel-plugin-styled-components": "^2.0.7",
+    "css-loader": "^6.7.1",
+    "html-webpack-plugin": "^5.5.0",
+    "ignore-loader": "^0.1.2",
+    "mini-css-extract-plugin": "^2.6.0",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "firebase-admin": "^10.2.0",
+    "firebase-functions": "^3.21.2",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "react-router-dom": "^6.3.0"
+  }
+}
