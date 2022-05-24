@@ -1,5 +1,5 @@
 import App from '../shared/App.js';
-import React from 'react';
+import React, { Component } from "react";
 import ReactDOMServer from 'react-dom/server';
 import { StaticRouter, matchPath } from 'react-router-dom';
 import serialize from "serialize-javascript";
@@ -19,14 +19,16 @@ app.use(cors({ origin: true }));
 
 
 app.get('/article/:articleslug', (req, res, next) => {
+  console.log("Article")
+  console.log(req.params.articleslug)
   admin.firestore().collection("articles").doc(req.params.articleslug).get().then(response => {
     let initialData;
     let seodata;
     if(response.exists) {
       const data = response.data();
       initialData = data;
-      initialData.type = "writing";
-      // console.log("index.js data.subjects: ",subjects[data.subjects[0]])
+      initialData.type = "article";
+    // 
       seodata = {
         title: `${data.title} | Fair Observer`,
         description: data.short,
@@ -47,7 +49,40 @@ app.get('/article/:articleslug', (req, res, next) => {
   })
 });
 
+app.get('/community/:userslug', (req, res, next) => {
+  console.log("Community: ", req.params.userslug)
+  admin.firestore().collection("community").doc(req.params.userslug).get().then(response => {
+    console.log(response.exists)
+    let initialData;
+    let seodata;
+    if(response.exists) {
+      console.log("Found")
+      const data = response.data();
+      initialData = data;
+      initialData.type = "community";
+    // 
+      seodata = {
+        title: "Fair Observer",
+        description: "A Fair Observer community member",
+        path: `/community/${req.params.userslug}`
+      }
+    } else {
+      initialData = {none:true,type:"community"}
+    }
+    sendresponse(req, res, next, initialData, seodata);
+  }).catch(reason => {
+    res.send(`<!doctype html>
+      <head>
+        <title>Error on Server</title>
+      </head>
+      <h1>Error on Server</h1>
+      <p>${reason}</p>
+    </html>`)
+  })
+});
+
 app.get('*', (req, res, next) => {
+  console.log("Generic")
   let seodata = {
     title: "Fair Observer",
     description: "Citizen Jounalism",
@@ -78,24 +113,24 @@ const seohtml = seo => {
   `
 }
 
-function sendresponse(req, res, next, initialData, seodata) {  
+
+function sendresponse(req, res, next, initialData, seodata) {    
   let initialDataToSend = {...initialData};
   initialDataToSend.url = req.url;
   initialDataToSend.seodata = seodata;
   const sheet = new ServerStyleSheet();
-  const context = { initialData: initialDataToSend };
-
-  let componentStream;
+  const context = { initialData: initialDataToSend };  
+  let componentStream;  
   componentStream = ReactDOMServer.renderToNodeStream(
     sheet.collectStyles(
       <StaticRouter location={req.url} context={context}>
         <App req={req}/>
       </StaticRouter>
     )
-  );
-  const styles = sheet.getStyleTags(); 
+  );  
+  const styles = sheet.getStyleTags();   
   // const title = 'EDeeU Education';
-  res.set('Cache-Control', 'public, max-age=600, s-maxage=1200');
+  res.set('Cache-Control', 'public, max-age=600, s-maxage=1200');  
   const htmlStart = `<!doctype html>
     <html lang="en">
       <head>
@@ -108,22 +143,21 @@ function sendresponse(req, res, next, initialData, seodata) {
         <style>!!!--STYLES-HERE--!!!</style>
       </head>
       <body>
-        <div id="root">`
-  res.write(htmlStart)
+        <div id="root">`  
+  res.write(htmlStart)  
   componentStream.pipe(
     res,
     { end: false }
-  )
+  )  
   const htmlEnd = `</div>
         <script src="/index_bundle.js?${new Date().getTime()}">
         </script>
       </body>
-    </html>`
-
+    </html>`  
   componentStream.on('end', () => {
       res.write(htmlEnd);
     res.end();
-  });  
+  });   
 }
 
 exports.httpServer = functions.https.onRequest(app);

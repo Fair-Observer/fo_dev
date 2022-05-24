@@ -28,6 +28,7 @@
     "webpack-node-externals": "^3.0.0"
   },
   "dependencies": {
+    "browser-or-node": "^2.0.0",
     "cors": "^2.8.5",
     "express": "^4.18.1",
     "firebase-admin": "^10.2.0",
