@@ -41,44 +41,48 @@ export default class App extends Component {
       <div className="AppDiv">
           <Switch>
             {routes.map((route, i) => 
-              <Route 
-                key={i}
-                path={route.path}
-                exact={route.exact}
-                render=
-                {
-                  (props) => {
-                    let initialData;
-                    if(isNode) {
-                      initialData = props.staticContext.initialData;
-                    } else {
-                      initialData = window.__FOinitialData__;
-                      // console.log("InitialData: ",initialData)
-                      // console.log("props.match.params: ",props.match.params);
-                      if(window.__FOinitialPage__) {
-                        // console.log("Initial page true!")
-                      } else {
-                        // console.log("Initial page false!")
+              {
+                return (
+                  <Route 
+                    key={i}
+                    path={route.path}
+                    exact={route.exact}
+                    render=
+                    {
+                      (props) => {
+                        let initialData;
+                        if(isNode) {
+                          initialData = props.staticContext.initialData;
+                        } else {
+                          initialData = window.__FOinitialData__;
+                          // console.log("InitialData: ",initialData)
+                          // console.log("props.match.params: ",props.match.params);
+                          if(window.__FOinitialPage__) {
+                            // console.log("Initial page true!")
+                          } else {
+                            // console.log("Initial page false!")
+                          }
+                        }
+
+                        // console.log("initialData from App.js <Route />: ",JSON.stringify(initialData));
+                        // console.log("props from App.js <Route />: ",JSON.stringify(props))
+                        return (
+                          <InjectRoute setRoute={this.setRoute} route={route} key={i}>
+                            {React.createElement(
+                              route.component,
+                              {
+                                path:this.setRoute,
+                                initialData:initialData,
+                                ...props
+                              }
+                            )}
+                          </InjectRoute>
+                        )
                       }
                     }
-
-                    // console.log("initialData from App.js <Route />: ",JSON.stringify(initialData));
-                    // console.log("props from App.js <Route />: ",JSON.stringify(props))
-                    return (
-                      <InjectRoute setRoute={this.setRoute} route={route} key={i}>
-                        {React.createElement(
-                          route.component,
-                          {
-                            path:this.setRoute,
-                            initialData:initialData,
-                            ...props
-                          }
-                        )}
-                      </InjectRoute>
-                    )
-                  }
-                }
-              />
+                  />
+                )
+              }
             )}     
           </Switch>
       </div>
