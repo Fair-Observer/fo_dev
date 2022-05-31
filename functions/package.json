@@ -13,6 +13,7 @@
   },
   "main": "index.js",
   "dependencies": {
+    "browser-or-node": "^2.0.0",
     "firebase": "^8.6.2",
     "firebase-admin": "^10.2.0",
     "firebase-functions": "^3.21.2",
