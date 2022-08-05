@@ -1,0 +1,36 @@
+.Grids_SimpleGrid {
+  padding: 0px 10px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Grids_SimpleGridItem4 {
+  padding: 0;
+  margin: 10px;
+  width: calc(25% - 20px);
+}
+
+@media (max-width: 800px) {
+  .Grids_SimpleGridItem4 {
+    width: calc(33.3333% - 20px);
+  }
+}
+
+@media (max-width: 550px) {
+  .Grids_SimpleGridItem4 {
+    width: calc(50% - 20px);
+  }
+}
+
+.Grids_SimpleGridItem3 {
+  padding: 0;
+  margin: 10px;
+  width: calc(33.3333% - 20px);
+}
+
+@media (max-width: 800px) {
+  .Grids_SimpleGridItem3 {
+    width: calc(50% - 20px);
+  }
+}

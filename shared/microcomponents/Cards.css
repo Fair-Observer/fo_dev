@@ -1,0 +1,138 @@
+.Cards_SettingCard {
+	background-color: #e7eff9;
+    padding: 30px 10px;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.Cards_SettingCard:hover {
+	background-color: #d4e2f3;
+}
+
+.Cards_SettingCardText {
+	margin: 0 auto;
+}
+
+.Cards_SuccessDiv {
+    background-color: #eaf9e8;
+    padding: 12px;
+    border: 2px solid #83d637;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    clear:both;
+}
+
+
+.Cards_ErrorDiv {
+    background-color: #f9e8ea;
+    padding: 12px;
+    border: 2px solid #e2899a;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    clear:both;
+}
+
+.Cards_NoticeDiv {
+	background-color: #e8eff9;
+    padding: 12px;
+    border: 2px solid #378dd6;
+    border-radius: 12px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+
+.Cards_Verified {
+	font-size: 12px;
+    border: #8787fb 2px solid;
+    background-color: #cbcbff;
+    padding: 4px 8px;
+    border-radius: 14px;
+    margin-left: 10px;
+}
+
+.SmallProfilePreviewCard {
+    object-fit: cover;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.SmallProfilePreviewCard_Image {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    /* padding: 15px; */
+    margin-right: 15px;
+}
+
+.SmallDirectorPreviewCard_Image {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 0;
+    /* padding: 15px; */
+    margin-right: 15px;
+}
+
+.SmallProfilePreviewCard_Text {
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.SmallProfilePreviewCard_Self {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 15px;
+    opacity: 0.35;
+    filter: blur(1px) grayscale(0.5);
+    -webkit-filter: blur(1px) grayscale(0.5);
+    -moz-filter: blur(1px) grayscale(0.5);
+    -o-filter: blur(1px) grayscale(0.5);
+    -ms-filter: blur(1px) grayscale(0.5);
+}
+
+.SmallProfilePreviewCard_Self_Image {
+    object-fit: cover;
+    display: block;
+    width: 60px;
+    height: 60px;
+    border-radius: 40px;
+    /* padding: 15px; */
+    margin-right: 15px;
+}
+
+.SmallProfilePreviewCard_Self_Text {
+    line-height: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.SmallProfileMenuImage {
+    width: 70px;
+    height: 70px;
+}
+
+.SmallProfileMenuImage_Image {
+    width: 50px;
+    height: 50px;
+    border-radius: 30px;
+    margin: 10px;
+    border: 2px solid #6c4b00;
+    cursor: pointer;
+}
+
+.SmallMemberPreviewCard_Name {
+
+}
+.SmallMemberPreviewCard_Location {
+    
+}

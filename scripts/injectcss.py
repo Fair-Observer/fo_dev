@@ -18,7 +18,7 @@ h.write(outputserve)
 h.close()
 
 if os.path.exists("./dist/index_bundle.js.LICENSE.txt"):
-	print "Found"
- 	os.remove("./dist/index_bundle.js.LICENSE.txt")
+	print("Found")
+	os.remove("./dist/index_bundle.js.LICENSE.txt")
 
-print "Build completed!"
+print("Build completed!")

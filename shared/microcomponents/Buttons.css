@@ -1,0 +1,13 @@
+.Buttons_SimpleButton {
+	background-color: #3162a2;
+    width: fit-content;
+    padding: 12px 20px;
+    margin-bottom: 15px;
+    height: fit-content;
+    display:block;
+    text-decoration: none;
+}
+
+.Buttons_SimpleButton:hover {
+	background-color: #477bbf;
+}
